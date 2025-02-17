@@ -1,7 +1,15 @@
 package com.datahub.taskmanager.service;
 
-import com.datahub.taskmanager.model.User;
-import com.datahub.taskmanager.repository.UserRepository;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,10 +17,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import com.datahub.taskmanager.model.User;
+import com.datahub.taskmanager.repository.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -31,7 +37,7 @@ class UserServiceTest {
         user.setId(1L);
         user.setName("Thiago");
         user.setEmail("thiago@example.com");
-        user.setPassword("1234"); // Normalmente, a senha seria criptografada
+        user.setPassword("1234");
     }
 
     @Test
@@ -66,7 +72,7 @@ class UserServiceTest {
 
         Exception exception = assertThrows(RuntimeException.class, () -> userService.getUserById(1L));
 
-        assertEquals("Usuário com ID 1 não encontrado", exception.getMessage());
+        assertEquals("Usuário não encontrado", exception.getMessage());
 
         verify(userRepository, times(1)).findById(1L);
     }

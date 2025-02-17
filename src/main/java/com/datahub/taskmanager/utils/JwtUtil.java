@@ -9,8 +9,8 @@ import java.util.Date;
 public class JwtUtil {
     private static final String SECRET = "minhaSuperChaveSecretaDeSegurancaJWT123!";
 
-    private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET.getBytes()); // Converte para uma chave segura
-    private static final long EXPIRATION_TIME = 86400000; // 1 dia (em milissegundos)
+    private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET.getBytes());
+    private static final long EXPIRATION_TIME = 86400000;
 
     private JwtUtil() {
 
@@ -22,7 +22,7 @@ public class JwtUtil {
                 .setSubject(String.valueOf(userId))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SECRET_KEY, SignatureAlgorithm.HS256) // ✅ NOVO MÉTODO
+                .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -30,7 +30,7 @@ public class JwtUtil {
     public static boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(SECRET_KEY) // ✅ NOVO MÉTODO
+                    .setSigningKey(SECRET_KEY)
                     .build()
                     .parseClaimsJws(token);
             return true;
@@ -42,7 +42,7 @@ public class JwtUtil {
     // Obtém o nome de usuário a partir do token
     public static String getUsernameFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(SECRET_KEY) // ✅ NOVO MÉTODO
+                .setSigningKey(SECRET_KEY)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();

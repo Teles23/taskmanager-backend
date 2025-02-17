@@ -1,13 +1,14 @@
 package com.datahub.taskmanager.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.datahub.taskmanager.exception.UserNotFoundException;
 import com.datahub.taskmanager.model.User;
 import com.datahub.taskmanager.repository.UserRepository;
 import com.datahub.taskmanager.utils.PasswordUtil;
-
-import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
 
 @Service // Indica que essa classe é um serviço do Spring
 public class UserService {
@@ -27,7 +28,7 @@ public class UserService {
     // Buscar usuário por ID
     public User getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Usuário com ID " + id + " não encontrado"));
+                .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
     }
 
     // Criar usuário
