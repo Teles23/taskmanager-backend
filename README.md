@@ -4,7 +4,7 @@
 O **Task Manager API** é um backend desenvolvido com **Spring Boot**, responsável pelo gerenciamento de usuários, tarefas e autenticação JWT.
 
 Ele é usado pelo frontend desenvolvido com **React + TypeScript**:
-🔗 **[Task Manager - Frontend](https://github.com/seu-usuario/task-manager-frontend)**
+🔗 **[Task Manager - Frontend](https://github.com/Teles23/taskmanager-frontend)**
 
 ---
 
