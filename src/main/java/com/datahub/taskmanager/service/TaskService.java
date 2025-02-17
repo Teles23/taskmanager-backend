@@ -31,7 +31,7 @@ public class TaskService {
     // Buscar tarefa por ID
     public Task getTaskById(Long id) {
         return taskRepository.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException("Tarefa com ID " + id + " não encontrada"));
+                .orElseThrow(() -> new TaskNotFoundException("Tarefa não encontrada"));
     }
 
     // Criar uma nova tarefa

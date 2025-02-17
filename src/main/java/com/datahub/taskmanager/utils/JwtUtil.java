@@ -1,5 +1,7 @@
 package com.datahub.taskmanager.utils;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 
@@ -7,7 +9,8 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 public class JwtUtil {
-    private static final String SECRET = "minhaSuperChaveSecretaDeSegurancaJWT123!";
+    private static final Dotenv dotenv = Dotenv.load();
+    private static final String SECRET = dotenv.get("JWT_SECRET");
 
     private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET.getBytes());
     private static final long EXPIRATION_TIME = 86400000;
